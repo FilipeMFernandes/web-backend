@@ -3,8 +3,10 @@ package com.mapri.webbackend.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -34,4 +36,8 @@ public class Request {
     @ManyToMany
     @JoinColumn(name = "id_proposta")
     List<Proposal> proposalList;
+
+    @CreatedDate
+    @Column(name = "createdDate")
+    Date createdDate;
 }
