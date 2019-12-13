@@ -22,10 +22,10 @@ public class Proposal {
     @JoinColumn(name = "budget")
     List<Budget> budgetList;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "id_product")
     Product product;
 
-    @Column(name = "delivery time")
-    Integer deliveryTime;
+    @Column(name = "deliveryTime")
+    int deliveryTime;
 }

@@ -16,4 +16,8 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Long id;
+    @Column(name = "name")
+    String name;
+    @Column(name = "cpf")
+    String cpf;
 }

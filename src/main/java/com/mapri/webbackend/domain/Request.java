@@ -15,7 +15,7 @@ import java.util.List;
 public class Request {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Long id;
 
     @Column(name = "title")
@@ -26,6 +26,10 @@ public class Request {
 
     @Column(name = "amount")
     Integer amount;
+
+    @ManyToOne
+    @JoinColumn(table = "request", name = "client")
+    Client client;
 
     @ManyToMany
     @JoinColumn(name = "id_proposta")
