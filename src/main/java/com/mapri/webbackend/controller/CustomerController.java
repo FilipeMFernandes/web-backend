@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("client")
-public class CustumerController {
+@RequestMapping("customer")
+public class CustomerController {
     @Autowired
     CustomerRepository customerRepository;
 

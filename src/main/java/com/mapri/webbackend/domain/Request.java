@@ -30,12 +30,15 @@ public class Request {
     Integer amount;
 
     @ManyToOne
-    @JoinColumn(table = "request", name = "client")
+    @JoinColumn(table = "request", name = "customer")
     Customer customer;
 
     @ManyToMany
     @JoinColumn(name = "id_proposta")
     List<Proposal> proposalList;
+
+    @Column(name = "closed")
+    Boolean closed;
 
     @CreatedDate
     @Column(name = "createdDate")

@@ -24,7 +24,4 @@ public class Budget  {
 
     @Column(name = "fee")
     Double fee;
-
-    @Column(name = "cnpj")
-    String cnpj;
 }

@@ -3,7 +3,6 @@ package com.mapri.webbackend.domain;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @Entity
@@ -18,13 +17,16 @@ public class Proposal {
     @JoinColumn(name = "id_provider")
     Provider provider;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "budget")
-    List<Budget> budgetList;
+    Budget budget;
 
     @ManyToOne
     @JoinColumn(name = "id_product")
     Product product;
+
+    @Column(name = "choosed")
+    Boolean choosed;
 
     @Column(name = "deliveryTime")
     int deliveryTime;
