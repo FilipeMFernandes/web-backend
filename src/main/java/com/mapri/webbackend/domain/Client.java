@@ -1,5 +1,6 @@
 package com.mapri.webbackend.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -20,4 +21,6 @@ public class Client {
     String name;
     @Column(name = "cpf")
     String cpf;
+    @Column
+    private String password;
 }
