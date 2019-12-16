@@ -1,7 +1,7 @@
 package com.mapri.webbackend.service;
 
-import com.mapri.webbackend.domain.Client;
-import com.mapri.webbackend.repository.ClientRepository;
+import com.mapri.webbackend.domain.Customer;
+import com.mapri.webbackend.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,29 +13,29 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 @Service
-public class ClientService implements UserDetailsService {
+public class CustomerService implements UserDetailsService {
 
     @Autowired
-    ClientRepository clientRepository;
+    CustomerRepository customerRepository;
 
     @Autowired
     private PasswordEncoder bcryptEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Client client = clientRepository.findByCpf(username);
-        if (client != null) {
-            return new User(client.getCpf(), client.getPassword(), new ArrayList<>());
+        Customer customer = customerRepository.findByCpf(username);
+        if (customer != null) {
+            return new User(customer.getCpf(), customer.getPassword(), new ArrayList<>());
         } else {
             throw new UsernameNotFoundException("User not found with username: " + username);
         }
     }
 
-    public Client save(Client client) {
-        Client savedClient = new Client();
-        savedClient.setName(client.getName());
-        savedClient.setCpf(client.getCpf());
-        savedClient.setPassword(bcryptEncoder.encode(client.getPassword()));
-        return clientRepository.save(savedClient);
+    public Customer save(Customer customer) {
+        Customer savedCustomer = new Customer();
+        savedCustomer.setName(customer.getName());
+        savedCustomer.setCpf(customer.getCpf());
+        savedCustomer.setPassword(bcryptEncoder.encode(customer.getPassword()));
+        return customerRepository.save(savedCustomer);
     }
 }

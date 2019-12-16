@@ -1,10 +1,10 @@
 package com.mapri.webbackend.controller;
 
 import com.mapri.webbackend.configuration.JwtTokenUtil;
-import com.mapri.webbackend.domain.Client;
+import com.mapri.webbackend.domain.Customer;
 import com.mapri.webbackend.domain.JwtRequest;
 import com.mapri.webbackend.domain.JwtResponse;
-import com.mapri.webbackend.service.ClientService;
+import com.mapri.webbackend.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,14 +25,14 @@ public class JwtAuthenticationController {
     private JwtTokenUtil jwtTokenUtil;
 
     @Autowired
-    private ClientService clientService;
+    private CustomerService customerService;
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
-        final UserDetails userDetails = clientService.loadUserByUsername(authenticationRequest.getUsername());
+        final UserDetails userDetails = customerService.loadUserByUsername(authenticationRequest.getUsername());
 
         final String token = jwtTokenUtil.generateToken(userDetails);
 
@@ -40,8 +40,8 @@ public class JwtAuthenticationController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ResponseEntity<?> saveUser(@RequestBody Client client) throws Exception {
-        return ResponseEntity.ok(clientService.save(client));
+    public ResponseEntity<?> saveUser(@RequestBody Customer customer) throws Exception {
+        return ResponseEntity.ok(customerService.save(customer));
     }
 
     private void authenticate(String username, String password) throws Exception {

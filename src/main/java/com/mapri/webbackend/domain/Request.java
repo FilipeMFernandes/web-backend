@@ -31,7 +31,7 @@ public class Request {
 
     @ManyToOne
     @JoinColumn(table = "request", name = "client")
-    Client client;
+    Customer customer;
 
     @ManyToMany
     @JoinColumn(name = "id_proposta")
