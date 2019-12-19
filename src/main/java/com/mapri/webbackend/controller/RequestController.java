@@ -19,6 +19,8 @@ public class RequestController {
     @Autowired
     RequestService requestService;
 
+
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.GET)
     public Iterable<Request> findAll (){
         Iterable<Request> all = requestRepository.findAll();

@@ -33,7 +33,7 @@ public class Request {
     @JoinColumn(table = "request", name = "customer")
     Customer customer;
 
-    @ManyToMany
+    @OneToMany
     @JoinColumn(name = "id_proposta")
     List<Proposal> proposalList;
 

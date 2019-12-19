@@ -17,7 +17,7 @@ public class Proposal {
     @JoinColumn(name = "id_provider")
     Provider provider;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "budget")
     Budget budget;
 

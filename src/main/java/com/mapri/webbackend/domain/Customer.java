@@ -13,14 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "Customer")
-public class Customer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    Long id;
-    @Column(name = "name")
-    String name;
-    @Column(name = "cpf")
-    String cpf;
+public class Customer extends Company {
     @Column
     private String password;
 }

@@ -23,9 +23,9 @@ public class CustomerService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Customer customer = customerRepository.findByCpf(username);
+        Customer customer = customerRepository.findByCnpj(username);
         if (customer != null) {
-            return new User(customer.getCpf(), customer.getPassword(), new ArrayList<>());
+            return new User(customer.getCnpj(), customer.getPassword(), new ArrayList<>());
         } else {
             throw new UsernameNotFoundException("User not found with username: " + username);
         }
@@ -34,7 +34,9 @@ public class CustomerService implements UserDetailsService {
     public Customer save(Customer customer) {
         Customer savedCustomer = new Customer();
         savedCustomer.setName(customer.getName());
-        savedCustomer.setCpf(customer.getCpf());
+        savedCustomer.setCorporateName(customer.getCorporateName());
+        savedCustomer.setRating(customer.getRating());
+        savedCustomer.setCnpj(customer.getCnpj());
         savedCustomer.setPassword(bcryptEncoder.encode(customer.getPassword()));
         return customerRepository.save(savedCustomer);
     }
